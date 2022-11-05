@@ -13,41 +13,68 @@
 /*───────────────────────────*\
 *   HEADER
 \*───────────────────────────*/
-.header-wrapper {
-    width: 100%;
-    height: 12vh;
-    background: #fff;
-    box-shadow: 0 2px 2px 0 rgba(0 0 0 / .5);
-}
 .header {
-    width: 90%;
-    margin: auto;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    padding: 20px 100px;
+    transition: 0.5s;
+    background: #fff;
 }
-.header .logo {
-    width: 100px;
+.logo img {
+    width: 60px;
     height: auto;
-    cursor: pointer;
-    margin-top: 10px;
 }
-ul.navbar {
+
+.navbar {
+    position: absolute;
+    top: -390px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0 0 0 / 0.9);
+    row-gap: 1.8rem ;
+    padding: 20px;
+    text-align: center;
+    z-index: 10;
+    transition: all .4s ease-in-out;
+    box-shadow: 4px 4px 0 4px rgba(14 55 54 / 0.15);
+}
+
+.navbar li {
+    position: relative;
     list-style: none;
-    margin: 0;
-    padding: 0;
-    z-index: 1;
 }
-ul.navbar li {
-    display: inline-flex;
-    width: 120px;
-}
-ul.navbar li a {
-    text-decoration: none;
+.navbar a {
+    font-size: 1rem;
+    font-weight: 500;
     color: #f50057;
+    text-decoration: none;
 }
-ul.navbar li a:hover {
-    color: #650729;
+.navbar a::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #f50057;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    transition: 0.4s all linear;
+}
+.navbar a:hover::after {
+    width: 100%;
+}
+.menu-icon {
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 101;
+    display: none;
 }
 #btn {
     width: 130px;
@@ -61,10 +88,12 @@ ul.navbar li a:hover {
     cursor: pointer;
     z-index: 1;
     clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transition: .4s all ease-in-out;
 }
 #btn:hover {
-    background: #692b2b;
+    background: #4bd40c;
 }
+
 
 /*───────────────────────────*\
 *   CONTAINER
@@ -72,6 +101,7 @@ ul.navbar li a:hover {
 .container {
     width: 100%;
     height: 88vh;
+    margin-top: 12vh;
     background-image: linear-gradient(rgba(0 0 0 / 0.5), rgba(0 0 0 / 0.5)), url(../images/pexel.jpg);
     background-size: cover;
     background-position: center;
@@ -239,4 +269,70 @@ ul.navbar li a:hover {
     top: 120px;
     right: 100px;
     z-index: 1;
+}
+
+/*───────────────────────────*\
+*   MEDIA CARE
+\*───────────────────────────*/
+@media (max-width: 1200px) {
+    .header {
+        padding: 10px 4%;
+    }
+    .menu-icon {
+        display: initial;
+    }
+    .navbar a::after {
+        display: none;
+    }
+    .navbar-active {
+        top: 100%;
+    }
+
+    .content-desc h1 {
+        font-size: 1.5rem;
+    }
+    .content-desc p {
+        font-size: 1rem;
+    }
+
+    .hero-image img {
+        right: 50px;
+    }
+    .game {
+        width: 300px;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .header {
+        justify-content: space-evenly;
+    }
+    .hero-image img, .hero-image::after {
+        display: none;
+    }
+    
+    .content-desc {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin: auto;
+    }
+}
+
+@media (max-width: 500px) {
+    .header {
+        justify-content: space-around;
+    }
+    .content {
+        width: 90%;
+        margin: 10px;
+    }
+    #btn {
+        display: none;
+    }
+    .social-icons {
+        margin-left: 45px;
+
+    }
 }
